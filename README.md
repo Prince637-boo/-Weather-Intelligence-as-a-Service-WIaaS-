@@ -223,7 +223,7 @@ The AI Swarm enables users to communicate with multiple specialized AI agents th
 ## 👥 Authors
 
 - **Prince** — Team Lead & System Architecture
-- **Siraj Ahmed** — AI Architecture & Core Model Optimization
+- **Siraj Ahmed** — Docker, Backend & n8n Integration
 - **biswadeep_infinity** — UI/UX Design & Pitch Deck
 - **vxr r** — Full Stack Development & Workflow Automation
 
