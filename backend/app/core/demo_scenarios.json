@@ -1,0 +1,93 @@
+{
+  "scenarios": [
+    {
+      "id": "thar_desert_heatwave",
+      "name": "The Thar Desert Heatwave",
+      "location": "Jaipur, Rajasthan, India",
+      "mode": "crisis",
+
+      "description": {
+        "summary": "Extreme heatwave across the Thar Desert region.",
+        "technical": "An intense thermal anomaly (+8.5°C above baseline) produces sustained electrical demand, accelerated reservoir evaporation, and severe crop heat stress. This scenario evaluates AI coordination under maximum infrastructure and agricultural pressure."
+      },
+
+      "weather": {
+        "temperature_celsius": 48.5,
+        "thermal_deviation_celsius": 8.5,
+        "humidity_percentage": 15,
+        "wind_speed_kmh": 8,
+        "wind_direction_degrees": 270,
+        "vapor_pressure_deficit_kpa": 1.8,
+        "heat_index_celsius": 50.2,
+        "wet_bulb_celsius": 29.4
+      },
+
+      "stress": {
+        "grid_utilization_percent": 100,
+        "water_reservoir_percent": 35,
+        "fuel_reserve_percent": 70,
+        "irrigation_efficiency_percent": 22
+      }
+    },
+
+    {
+      "id": "maritime_monsoon_surge",
+      "name": "The Maritime Monsoon Surge",
+      "location": "Lome, Maritime Region, Togo",
+      "mode": "crisis",
+
+      "description": {
+        "summary": "Severe monsoon-driven coastal storm conditions.",
+        "technical": "Strong winds (45 km/h), saturated humidity, and storm runoff drastically reduce irrigation efficiency while increasing transportation and logistics disruption. This scenario stresses emergency coordination and resource allocation."
+      },
+
+      "weather": {
+        "temperature_celsius": 30.2,
+        "thermal_deviation_celsius": 1.5,
+        "humidity_percentage": 96,
+        "wind_speed_kmh": 45,
+        "wind_direction_degrees": 215,
+        "vapor_pressure_deficit_kpa": 0.7,
+        "heat_index_celsius": 39.6,
+        "wet_bulb_celsius": 28.8
+      },
+
+      "stress": {
+        "grid_utilization_percent": 72,
+        "water_reservoir_percent": 95,
+        "fuel_reserve_percent": 82,
+        "irrigation_efficiency_percent": 38
+      }
+    },
+
+    {
+      "id": "nominal_operations",
+      "name": "Nominal Operations",
+      "location": "Reference Baseline",
+      "mode": "baseline",
+
+      "description": {
+        "summary": "Normal environmental operating conditions.",
+        "technical": "All climate variables remain within historical regional baselines. The AI agents should avoid unnecessary interventions, demonstrating low false-positive behavior during stable operations."
+      },
+
+      "weather": {
+        "temperature_celsius": 30,
+        "thermal_deviation_celsius": 0,
+        "humidity_percentage": 55,
+        "wind_speed_kmh": 10,
+        "wind_direction_degrees": 180,
+        "vapor_pressure_deficit_kpa": 1.2,
+        "heat_index_celsius": 31,
+        "wet_bulb_celsius": 24
+      },
+
+      "stress": {
+        "grid_utilization_percent": 28,
+        "water_reservoir_percent": 90,
+        "fuel_reserve_percent": 90,
+        "irrigation_efficiency_percent": 94
+      }
+    }
+  ]
+}

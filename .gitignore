@@ -4,3 +4,4 @@ __pycache__/
 venv/
 .vscode/
 *.json
+!backend/app/core/demo_scenarios.json
