@@ -26,11 +26,11 @@ _HERE        = Path(__file__).parent          # backend/app/
 _STATIC_DIR  = _HERE.parent / "static"        # backend/static/
 
 app = FastAPI(
-    title="Weather Intelligence as a Service",
+    title="WIaaS Climate Intelligence Platform",
     version="1.0.0",
     description=(
-        "WIaaS backend — Climate analytics, physics-degraded resource ledger, "
-        "and GNN-to-LLM state vector pipeline."
+        "Global climate analytics backend for agricultural resilience, energy, "
+        "logistics, and operational decision support across multiple regions."
     ),
 )
 
@@ -58,7 +58,7 @@ def health_check() -> dict:
     from datetime import datetime, timezone
     return {
         "status": "healthy",
-        "service": "WIAAS Asia",
+        "service": "WIaaS",
         "timestamp": datetime.now(timezone.utc).isoformat(),
     }
 
@@ -108,15 +108,15 @@ async def get_client_location(request: Request):
                 return {
                     "status": "success",
                     "source": "ipwho.is",
-                    "city": data.get("city") or "Karachi",
-                    "region": data.get("region") or "Sindh",
-                    "country": data.get("country") or "Pakistan",
-                    "country_code": data.get("country_code") or "PK",
-                    "latitude": data.get("latitude", 24.86),
-                    "longitude": data.get("longitude", 67.01),
-                    "timezone": tz.get("id") or "Asia/Karachi",
-                    "timezone_code": tz.get("abbr") or "PKT",
-                    "timezone_offset": (tz.get("offset", 18000) / 3600.0) if tz.get("offset") is not None else 5.0,
+                    "city": data.get("city") or "Global Metro",
+                    "region": data.get("region") or "Regional observatory",
+                    "country": data.get("country") or "Global baseline",
+                    "country_code": data.get("country_code") or "GLB",
+                    "latitude": data.get("latitude", 20.0),
+                    "longitude": data.get("longitude", 0.0),
+                    "timezone": tz.get("id") or "UTC",
+                    "timezone_code": tz.get("abbr") or "UTC",
+                    "timezone_offset": (tz.get("offset", 0) / 3600.0) if tz.get("offset") is not None else 0.0,
                 }
     except Exception:
         pass
@@ -131,15 +131,15 @@ async def get_client_location(request: Request):
                 return {
                     "status": "success",
                     "source": "ip-api.com",
-                    "city": data.get("city") or "Islamabad",
-                    "region": data.get("regionName") or "Islamabad",
-                    "country": data.get("country") or "Pakistan",
-                    "country_code": data.get("countryCode") or "PK",
-                    "latitude": data.get("lat", 33.72),
-                    "longitude": data.get("lon", 73.04),
-                    "timezone": data.get("timezone") or "Asia/Karachi",
-                    "timezone_code": "PKT",
-                    "timezone_offset": 5.0,
+                    "city": data.get("city") or "Global Metro",
+                    "region": data.get("regionName") or "Regional observatory",
+                    "country": data.get("country") or "Global baseline",
+                    "country_code": data.get("countryCode") or "GLB",
+                    "latitude": data.get("lat", 20.0),
+                    "longitude": data.get("lon", 0.0),
+                    "timezone": data.get("timezone") or "UTC",
+                    "timezone_code": "UTC",
+                    "timezone_offset": 0.0,
                 }
     except Exception:
         pass
@@ -148,12 +148,12 @@ async def get_client_location(request: Request):
     return {
         "status": "fallback",
         "source": "default",
-        "city": "Karachi",
-        "country": "Pakistan",
-        "country_code": "PK",
-        "timezone": "Asia/Karachi",
-        "timezone_code": "PKT",
-        "timezone_offset": 5.0,
+        "city": "Global Metro",
+        "country": "Global baseline",
+        "country_code": "GLB",
+        "timezone": "UTC",
+        "timezone_code": "UTC",
+        "timezone_offset": 0.0,
     }
 
 _STATIC_DIR.mkdir(parents=True, exist_ok=True)

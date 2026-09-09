@@ -1,19 +1,18 @@
 /**
- * state.js — Centralized application state for WIaaS frontend.
- * Single source of truth for the entire Asia Monitoring Network & Global Active Context.
+ * state.js — Centralized application state for the WIaaS frontend.
+ * Single source of truth for the active climate-observatory context.
  */
 
 // ── Active Region Global Context ──────────────────────────────────────────────
 // No region is selected until the user chooses a country or city.
 export let activeRegionKey = null;
-// The default telemetry view is Multan for a useful first load, but it is not
-// a user selection. The header/chat should stay Asia-wide until a map or
-// Region drawer choice is made.
+// The platform remains globally neutral until a user explicitly selects a region
+// from the map or the region explorer drawer.
 window._hasExplicitRegionSelection = false;
 export let activeLeftTab = null;
 window._activeRegionKey = null;
 
-// ── Complete Asian Region Registry Cache ──────────────────────────────────────
+// ── Regional Registry Cache ──────────────────────────────────────────────────
 export let regionsRegistry = {
     "pakistan_multan": {
         "name": "Multan, Punjab, Pakistan",
