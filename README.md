@@ -1,5 +1,5 @@
-# WIAAS Asia
-## Intelligent Weather Assessment & Decision Platform for Asia
+# WIaaS
+## Global Climate Intelligence Platform
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
@@ -10,15 +10,15 @@
 
 ---
 
-## 🌏 National Hackathon Context & Vision
+## 🌍 Mission
 
-**WIAAS Asia (Weather Intelligence as a Service, Asia Edition)** is an autonomous climate resilience and weather intelligence platform engineered for proactive disaster mitigation, agricultural preservation, power grid stability, and emergency economic continuity across **Asia**.
+**WIaaS** is a global climate resilience and weather intelligence platform designed to help operators, planners, and field teams turn environmental signals into fast, evidence-based action.
 
-Developed as an advanced submission for the **National Hackathon**, WIAAS Asia addresses the urgent challenges facing Asia's most vulnerable microclimates: from compounding heat domes in the Indus Basin and maritime moisture traps in coastal metropolises to typhoon corridors in the Kanto plain and monsoon river valleys in Bengal.
+Built for a broad set of climate stress scenarios, the system combines atmospheric physics, regional baselines, telemetry, and specialist decision support to support agriculture, infrastructure, logistics, and emergency response across multiple geographies and operating contexts.
 
 ## About Us
 
-WIAAS Asia combines live weather telemetry, deterministic climate physics, and region-aware specialist agents to turn environmental signals into practical decisions for agriculture, infrastructure, logistics, and emergency response.
+WIaaS combines live weather telemetry, deterministic climate physics, and region-aware specialist agents to turn environmental signals into practical decisions for agriculture, infrastructure, logistics, and emergency response.
 
 <video src="https://github.com/user-attachments/assets/06da3cad-279a-49ed-9f65-b70e9725cb15" controls="controls" preload="metadata" width="100%">
   Your browser does not support inline video.
@@ -26,22 +26,22 @@ WIAAS Asia combines live weather telemetry, deterministic climate physics, and r
 
 ---
 
-## 🎯 The Operational Problem & The WIAAS Solution
+## 🎯 The Operational Problem & The WIaaS Solution
 
 ### The Problem
-Traditional weather applications output passive numerical forecasts, such as *"43°C with 78% relative humidity"*, leaving human operators to manually interpret cascading infrastructure consequences. When agricultural crops undergo transpirational collapse, power transformers fail from air conditioning demand surges, or storm runoff inundates transport arteries, manual reaction cycles are far too slow.
+Traditional weather applications often provide passive forecasts without translating them into operational impact. When agricultural crops face stress, power systems are pushed to peak demand, or transport and water systems become vulnerable to extreme events, manual interpretation is too slow.
 
 ### The Solution
-WIAAS Asia bridges the operational gap by coupling **deterministic atmospheric physics** with an **autonomous dual-agent cognitive decision swarm**. It answers:
-- **What physical stress is occurring?** (Vapor Pressure Deficit, Wet-Bulb survivability limit, heat index).
-- **What critical resources are degrading?** (Water reservoir evaporation, power grid transformer headroom, emergency fuel reserves).
-- **What automated field action must be executed immediately?** (Nocturnal irrigation shift, substation derating, floodgate protocols, public cooling shelter dispatch).
+WIaaS bridges the operational gap by coupling **deterministic atmospheric physics** with an **autonomous dual-agent decision layer**. It answers:
+- **What physical stress is occurring?** (Vapor pressure deficit, wet-bulb survivability, heat index).
+- **What critical resources are degrading?** (Water storage, power headroom, fuel reserves).
+- **What action must be taken now?** (Irrigation timing, grid management, flood responses, public safety guidance).
 
 ---
 
-## ⚡ Quickstart & 1-Click Launch (Evaluator Ready)
+## ⚡ Quickstart & 1-Click Launch
 
-The entire frontend Single Page Application (SPA) is **pre-compiled and served directly** by the FastAPI backend. Anyone evaluating this project **only needs Python 3.10+**; no Node.js or npm installation is required to run the full interactive platform!
+The frontend application is **pre-compiled and served directly** by the FastAPI backend. The platform can be run with Python 3.10+ without requiring a Node.js install for standard evaluation and local testing.
 
 ### Option A: 1-Click Startup Scripts
 - **Windows:** Double-click [`start.bat`](start.bat) or run in PowerShell:
@@ -56,8 +56,8 @@ The entire frontend Single Page Application (SPA) is **pre-compiled and served d
 ### Option B: Standard Python Launch
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/abdxllxh/WIaaS-Asia.git
-   cd WIaaS-Asia
+   git clone https://github.com/Prince637-boo/-Weather-Intelligence-as-a-Service-WIaaS-
+   cd -Weather-Intelligence-as-a-Service-WIaaS-
    ```
 
 2. **Install Python Dependencies:**
@@ -79,7 +79,7 @@ The entire frontend Single Page Application (SPA) is **pre-compiled and served d
 
 ## 🧪 Automated Verification Suite
 
-WIAAS Asia includes an automated end-to-end intelligence verification script testing all **12 CrisisLens specialized query categories** across 5 distinct Asian microclimates (Tokyo, Beijing, Delhi, Karachi, Riyadh):
+The platform includes an automated end-to-end intelligence verification script testing all **12 CrisisLens specialized query categories** across multiple representative climate environments and operational baselines.
 
 ```bash
 python scripts/verify_crisislens_questions.py
@@ -87,7 +87,7 @@ python scripts/verify_crisislens_questions.py
 
 *Asserts: HTTP 200 responses, zero generic canned phrases, evidence-backed physics reasoning (°C, kPa, MW, mm), and authentic bilingual Urdu script generation.*
 
-The live dashboard exposes the remaining features directly: Asia Monitoring Network, Physics Intelligence, Agriculture Diagnostics, What-If Simulator, Grid, Logistics, Research, Location Intelligence, CrisisLens, bilingual English/Urdu chat and voice advisory, timeline, telemetry visualizers, and city-specific action advisories.
+The live dashboard exposes the remaining features directly: regional monitoring, physics intelligence, agriculture diagnostics, what-if simulation, grid and logistics views, research synthesis, location intelligence, crisis analysis, bilingual English/Urdu chat and voice advisory, timeline and telemetry visualizers, and local action advisories.
 
 ## 🔐 Public-repository security
 
@@ -99,9 +99,9 @@ The live dashboard exposes the remaining features directly: Asia Monitoring Netw
 
 ## 🌟 Key Platform Features
 
-### 1. 60 FPS Thermographic Asia Map
+### 1. 60 FPS Thermographic Regional Map
 - High-performance MapLibre GL engine replacing sluggish 3D globes.
-- Continental-to-district hierarchical zoom across **29 Asian countries** and **67 microclimates**.
+- Multi-scale geographic zoom across diverse regional observatories and microclimates.
 - Interactive thermal perception heatmaps, dynamic precipitation radar rings, and wind flow vectors.
 
 ### 2. Real-Time 1-Second Telemetry Oscilloscope
@@ -172,9 +172,9 @@ flowchart TD
 
 ---
 
-## 🗺️ Pan-Asian Regional Coverage
+## 🗺️ Regional Coverage
 
-WIAAS Asia incorporates granular baselines and coordinates across **29 Asian countries** and **67 economic/agricultural zones**:
+The platform incorporates granular baselines and coordinates across multiple global operational zones and climate baselines:
 
 | Subregion | Key Representative Territories | Microclimate Simulation Profile |
 |:---|:---|:---|
@@ -189,7 +189,7 @@ WIAAS Asia incorporates granular baselines and coordinates across **29 Asian cou
 ## 📂 Project Directory Structure
 
 ```text
-WIAAS-Asia/
+WIaaS/
 ├── backend/                      # FastAPI Application & Simulation Engine
 │   ├── app/
 │   │   ├── api/v1/endpoints.py   # REST APIs (telemetry, grid, client-location, TTS)

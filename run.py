@@ -1,6 +1,6 @@
 ﻿"""
 WIaaS (Weather Intelligence as a Service) — Quickstart Launcher
-Runs the complete production application on http://127.0.0.1:8000
+Runs the complete production application on http://127.0.0.1:9000
 """
 from __future__ import annotations
 import os
@@ -43,15 +43,15 @@ def main() -> None:
     print("  WIaaS (Weather Intelligence as a Service) — Hackathon Edition")
     print("  Autonomous Climate Resilience & Weather Intelligence Platform")
     print("=" * 70)
-    print("  -> Application URL: http://127.0.0.1:8000")
-    print("  -> API Docs       : http://127.0.0.1:8000/docs")
+    print("  -> Application URL: http://127.0.0.1:9000")
+    print("  -> API Docs       : http://127.0.0.1:9000/docs")
     print("  -> Press CTRL+C to stop the server")
     print("=" * 70)
 
     def open_browser() -> None:
         time.sleep(1.8)
         try:
-            webbrowser.open("http://127.0.0.1:8000")
+            webbrowser.open("http://127.0.0.1:9000")
         except Exception:
             pass
 
@@ -61,7 +61,7 @@ def main() -> None:
     sys.path.insert(0, str(BACKEND_DIR))
 
     import uvicorn
-    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, log_level="info")
+    uvicorn.run("app.main:app", host="127.0.0.1", port=9000, log_level="info")
 
 if __name__ == "__main__":
     main()
