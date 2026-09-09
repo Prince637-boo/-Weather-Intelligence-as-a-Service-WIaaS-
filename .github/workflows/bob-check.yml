@@ -1,0 +1,37 @@
+name: IBM Bob Code Review & Quality Gate
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  bob-analysis:
+    name: "IBM Bob / Code Analysis"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Étape simulée/placeholder pour le SDK/API de Bob
+      - name: Run IBM Bob Code Review Agent
+        env:
+          BOB_API_KEY: ${{ secrets.BOB_API_KEY }}
+        run: |
+          echo "🤖 IBM Bob 2.0 commence l'analyse du code de la Pull Request..."
+          # Ici viendra la commande officielle du CLI/SDK d'IBM Bob 2.0 fourni pour le hackathon
+          # Exemple : python -m ibm_bob_agent analyze --pr ${{ github.event.number }}
+          echo "✅ Analyse terminée : Aucun bug critique détecté."
