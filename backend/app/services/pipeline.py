@@ -1,13 +1,13 @@
 """
-Core Backend Orchestrator — WIaaS Physics Pipeline.
+Core Backend Orchestrator -- WIaaS Physics Pipeline.
 
 Coordinates the full ingestion-to-vector pipeline across six explicit stages:
-    Stage 1 ➔ Live telemetry ingestion (Open-Meteo API / GraphCast GNN)
-    Stage 2 ➔ Multi-variable climate analysis  (ClimateAnomalyEngine)
-    Stage 3 ➔ Physics-degraded resource computation  (SyntheticResourceLedger)
-    Stage 4 ➔ Bounded text-state vector construction  (GNNToLLMBridge)
-    Stage 5 ➔ Structured JSON payload assembly
-    Stage 6 ➔ Atomic file commit
+    Stage 1 -> Live telemetry ingestion (Open-Meteo API / GraphCast GNN)
+    Stage 2 -> Multi-variable climate analysis  (ClimateAnomalyEngine)
+    Stage 3 -> Physics-degraded resource computation  (SyntheticResourceLedger)
+    Stage 4 -> Bounded text-state vector construction  (GNNToLLMBridge)
+    Stage 5 -> Structured JSON payload assembly
+    Stage 6 -> Atomic file commit
 
 The final payload serves two consumers:
     - The vLLM inference layer, which injects the `llm_state_vector` as the
@@ -18,6 +18,20 @@ The final payload serves two consumers:
 """
 
 from __future__ import annotations
+
+import sys
+
+# Ensure stdout and stderr handle arbitrary unicode without crashing on Windows cp1252
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+if hasattr(sys.stderr, "reconfigure"):
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 import json
 import requests
@@ -69,6 +83,7 @@ class WeatherIntelligencePipeline:
                 "latitude":  lat,
                 "longitude": lon,
                 "current":   self._TELEMETRY_VARS,
+                "daily":     "temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max",
                 "timezone":  "auto",
             }
             # Added production standard User-Agent header to avoid edge cloud firewalls during hackathon execution
@@ -81,7 +96,14 @@ class WeatherIntelligencePipeline:
                     self._API_BASE_URL, params=params, headers=headers, timeout=self._REQUEST_TIMEOUT
                 )
                 response.raise_for_status()
-                raw = response.json()["current"]
+                response_json = response.json()
+                raw = response_json["current"]
+                raw["_forecast_7d"] = {
+                    "max_temps_c": response_json.get("daily", {}).get("temperature_2m_max", []),
+                    "min_temps_c": response_json.get("daily", {}).get("temperature_2m_min", []),
+                    "precipitation_sums_mm": response_json.get("daily", {}).get("precipitation_sum", []),
+                    "rain_prob_max_pct": response_json.get("daily", {}).get("precipitation_probability_max", []),
+                }
                 self._telemetry_cache[cache_key] = {"time": now, "data": raw}
             except requests.exceptions.Timeout:
                 print(f"[TIMEOUT]  API request exceeded {self._REQUEST_TIMEOUT}s limit. Checking cache/baseline.")
@@ -122,7 +144,7 @@ class WeatherIntelligencePipeline:
             return None
 
         region = REGIONS[region_key]
-        print(f"\n[INIT]  Pipeline active ➔ {region['name']}")
+        print(f"\n[INIT]  Pipeline active -> {region['name']}")
         print("-" * 66)
 
         # ── Stage 1: Live Telemetry ───────────────────────────────────────────
@@ -180,11 +202,18 @@ class WeatherIntelligencePipeline:
         )
 
         # ── Stage 4: GNN-to-LLM Text-State Vector ─────────────────────────────
+        forecast_7d = raw.get("_forecast_7d", {
+            "max_temps_c": [],
+            "min_temps_c": [],
+            "precipitation_sums_mm": [],
+            "rain_prob_max_pct": [],
+        })
         state_vector: str = GNNToLLMBridge.build_state_vector(
             region_name = region["name"],
             telemetry   = telemetry,
             analysis    = analysis,
             ledger      = ledger,
+            forecast_7d = forecast_7d,
         )
         print(f"[4/6] OK State vector     {len(state_vector)} chars constructed")
 
@@ -221,6 +250,7 @@ class WeatherIntelligencePipeline:
                 "irrigation_penalty_active":      analysis["overhead_irrigation_efficiency"] < 0.5,
             },
             "synthetic_resource_ledger": ledger,
+            "forecast_7d": forecast_7d,
             "llm_state_vector": state_vector,
         }
         # ── ADDED: n8n Compatibility Layer for vxr (Non-destructive) ────────────────
@@ -249,7 +279,7 @@ class WeatherIntelligencePipeline:
         # ── Stage 6: Atomic File Commit ───────────────────────────────────────
         with open(self.output_filename, "w", encoding="utf-8") as f:
             json.dump(payload, f, indent=4, ensure_ascii=False)
-        print(f"[6/6] OK Committed       ➔ {self.output_filename}")
+        print(f"[6/6] OK Committed       -> {self.output_filename}")
 
         print(f"\n{'-' * 66}\n{state_vector}\n")
         return payload
